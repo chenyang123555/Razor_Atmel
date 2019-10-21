@@ -87,7 +87,16 @@ Promises:
 */
 void UserApp1Initialize(void)
 {
- 
+ LedOff(WHITE);
+  LedOff(PURPLE);
+  LedOff(BLUE);
+  LedOff(CYAN);
+  LedOff(GREEN);
+  LedOff(YELLOW);
+  LedOff(ORANGE);
+  LedOff(RED);
+  PWMAudioSetFrequency(BUZZER1, 416);
+  PWMAudioSetFrequency(BUZZER2, 624);
   /* If good initialization, set state to Idle */
   if( 1 )
   {
@@ -136,6 +145,140 @@ State Machine Function Definitions
 /* Wait for ??? */
 static void UserApp1SM_Idle(void)
 {
+if(WasButtonPressed(BUTTON1) ){
+   if(WasButtonPressed(BUTTON2) ){
+    if(WasButtonPressed(BUTTON0) ){
+  //ButtonAcknowledge(BUTTON0);
+  static u16 u16BlinkCount=0;
+  u16BlinkCount++;
+  if(u16BlinkCount==100){
+  LedOff(WHITE);
+  LedOff(PURPLE);
+  LedOff(BLUE);
+  LedOff(CYAN);
+  LedOff(GREEN);
+  LedOff(YELLOW);
+  LedOff(ORANGE);
+  LedOff(RED);
+  }
+  
+  
+  
+  if(u16BlinkCount==600){
+  
+  LedOn(WHITE);
+  LedOn(RED);
+  LCDMessage(LINE1_START_ADDR, ">");
+  LCDMessage(LINE2_START_ADDR, ">");
+  LCDMessage(LINE1_END_ADDR, "<");
+  LCDMessage(LINE2_END_ADDR, "<");
+  
+  PWMAudioOn(BUZZER1);
+  PWMAudioOff(BUZZER2);
+  }
+  if(u16BlinkCount==1200){
+  PWMAudioOff(BUZZER1);
+  PWMAudioOn(BUZZER2);
+  LCDMessage(LINE1_START_ADDR + 1, ">");
+  LCDMessage(LINE2_START_ADDR + 1, ">");
+  LCDMessage(LINE1_START_ADDR + 18, "<");
+  LCDMessage(LINE2_START_ADDR + 18, "<");
+  }
+   if(u16BlinkCount==1800){
+  LedOn(PURPLE);
+  LedOn(ORANGE);
+  PWMAudioOn(BUZZER1);
+  PWMAudioOff(BUZZER2);
+  LCDMessage(LINE1_START_ADDR + 6, "ambulance");
+  
+ 
+  
+  }
+  if(u16BlinkCount==2400){
+  PWMAudioOff(BUZZER1);
+  PWMAudioOn(BUZZER2);
+  LCDMessage(LINE2_START_ADDR + 9, "120");
+  }
+  if(u16BlinkCount==3000){
+  LedOn(BLUE);
+  LedOn(YELLOW);
+  PWMAudioOn(BUZZER1);
+  PWMAudioOff(BUZZER2);
+  }
+  if(u16BlinkCount==3600){
+  PWMAudioOff(BUZZER1);
+  PWMAudioOn(BUZZER2);
+  }
+  if(u16BlinkCount==4200){
+  LedOn(CYAN);
+  LedOn(GREEN);
+  PWMAudioOn(BUZZER1);
+  PWMAudioOff(BUZZER2);
+  }
+  
+  if(u16BlinkCount==4800){
+  LedOff(CYAN);
+  LedOff(GREEN);
+  LedOff(BLUE);
+  LedOff(YELLOW);
+  LedOff(PURPLE);
+  LedOff(ORANGE);
+  LedOff(WHITE);
+  LedOff(RED);
+  PWMAudioOff(BUZZER1);
+  PWMAudioOn(BUZZER2); 
+  }
+  if(u16BlinkCount==5400){
+  LedBlink(WHITE, LED_8HZ);
+  LedBlink(RED, LED_8HZ);
+  PWMAudioOn(BUZZER1);
+  PWMAudioOff(BUZZER2);
+  }
+  if(u16BlinkCount==6000){
+    PWMAudioOff(BUZZER1);
+  PWMAudioOn(BUZZER2);
+  }
+  if(u16BlinkCount==6600){
+  PWMAudioOn(BUZZER1);
+  PWMAudioOff(BUZZER2);
+  }
+  if(u16BlinkCount==7200){
+  PWMAudioOff(BUZZER1);
+  PWMAudioOn(BUZZER2);
+  u16BlinkCount=0; 
+  }
+  
+  }
+  // if( IsButtonPressed(BUTTON1) ){
+  else{
+  LedOff(CYAN);
+  LedOff(GREEN);
+  LedOff(BLUE);
+  LedOff(YELLOW);
+  LedOff(PURPLE);
+  LedOff(ORANGE);
+  LedOff(WHITE);
+  LedOff(RED);
+  ///LCDCommand(LCD_CLEAR_CMD);
+  PWMAudioOff(BUZZER1);
+  PWMAudioOff(BUZZER2);
+  }
+  
+  }
+  }
+  if(WasButtonPressed(BUTTON3) ){
+    ButtonAcknowledge(BUTTON3);
+  LedOff(CYAN);
+  LedOff(GREEN);
+  LedOff(BLUE);
+  LedOff(YELLOW);
+  LedOff(PURPLE);
+  LedOff(ORANGE);
+  LedOff(WHITE);
+  LedOff(RED);
+  PWMAudioOff(BUZZER1);
+  PWMAudioOff(BUZZER2);
+  }
 
 } /* end UserApp1SM_Idle() */
     
